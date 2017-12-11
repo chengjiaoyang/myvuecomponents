@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>helloform_Vue</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+    </head>
+    <body>
+    <div class="hello">
+
+        <ul>
+            <form @submit.prevent="submit">
+                <input type="text" name="name" v-model="inputtext.name">
+                <input type="password" name="password" v-model="inputtext.password">
+                <my-component :aab="inputtext"></my-component>
+                <input type="submit" value="提交">
+            </form>
+        </ul>
+    </div>
+    <script>
+    Vue.component('my-component',{
+      template:"<input placeholder='请点击' v-model='aab.yan'>",
+      props:['aab']
+  }
+);
+        var vm = new Vue({
+            el: '.hello',
+            data: {
+
+                inputtext:{}
+            },
+            methods: {
+                submit: function() {
+                    console.log(this.inputtext);
+                }
+            },
+        })
+    </script>
+
+    </body>
+</html>

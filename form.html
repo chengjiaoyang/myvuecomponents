@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+  <style>
+    .container{
+      display: none;
+      width: 400px;
+      height: 300px;
+      border: 2px solid #ddd;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .auto{
+
+    }
+  </style>
+</head>
+<body>
+  <button id="tex">alert</button>
+  <button id="clo">close</button>
+  <div class="container">
+      <div class="auto">
+        <label for="ip">输入</label>
+        <input type="text" class="" id="ip">
+      </div>
+  </div>
+  <script>
+  tex.onclick=function(){
+    document.getElementsByClassName('container')[0].style.display='block';
+  }
+  clo.onclick=function(){
+    document.getElementsByClassName('container')[0].style.display='none'
+  }
+  window.onload=function(){
+    tex.click()
+  }
+  </script>
+</body>
+</html>
