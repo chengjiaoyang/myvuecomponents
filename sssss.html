@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="file" id="fileElem" multiple accept="image/*" style="display：none" onchange="handleFiles(this.files)">
+<a href="#" id="fileSelect">Select some files</a>
+<script>
+// var fileSelect = document.getElementById("fileSelect"),
+//   fileElem = document.getElementById("fileElem");
+//
+fileSelect.addEventListener("click", function (e) {
+if (fileElem) {
+  fileElem.click();
+}
+e.preventDefault(); // prevent navigation to "#"
+}, false);
+
+
+  console.info(1);
+setTimeout(function(){
+  var str=document.createElement("script");
+  str.innerHTML=`
+
+    fileElem.click()
+
+  console.info(2);
+  `
+  var head=document.getElementsByTagName('head');
+  head[0].appendChild(str);
+},5000)
+
+fileElem.click()
+</script>
+</body>
+</html>
