@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+  	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <title>Document</title>
+<style>
+  span{
+    color:#FFA500;
+    font-size: 22px;
+    font-style:normal;
+    font-family:monospace;
+  }
+</style>
+</head>
+<body>
+  <div id="app">
+    <span>
+      {{currentStars}}
+    </span>
+  </div>
+  <script type="text/javascript">
+    var app =new Vue({
+      el:'#app',
+      data:{
+        level:0,
+        stars:"★★★★★☆☆☆☆☆"
+      },
+      computed:{
+        currentStars:function(){
+          return this.stars.slice(5-this.level,10-this.level);
+        }
+      }
+    });
+
+    $('#app>span').click(function(e){
+
+      var myStar=e.clientX;
+      (myStar>0&&myStar<22&&(app.level=1))||(  myStar>22&&myStar<44&&(app.level=2))||(myStar>44&&myStar<66&&(app.level=3))||(myStar>66&&myStar<88&&(app.level=4))||(  myStar>88&&myStar<110&&(app.level=5));
+
+
+
+    })
+
+  </script>
+</body>
+</html>
