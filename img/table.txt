@@ -1,0 +1,114 @@
+     var arr = [];
+                                                var cId = 0;
+                                                var operator = '';
+                                                var project_name = '';
+                                                var province = '';
+                                                var city = '';
+                                                var site_name = '';
+                                                var finish = '';
+                                                var access_bandwidth = '';
+                                                var no_bandwidth = '';
+                                                var bandwidth = '';
+                                                var eu_num = ''
+
+                                                //添加
+                                                $('.left-btn').click(function () {
+                                                    var str = '<tr><td><input name="id" type="checkbox" ></td><td>天津电信</td><td>测试</td><td>天津</td><td class="can_edit"><input type="text"  style="width:28px"/></td><td class="can_edit"><input type="text" style="width:28px"/></td><td class="can_edit"><input type="text" style="width:28px"/></td><td class="can_edit"><input type="text" style="width:28px"/></td><td class="can_edit"><input type="text" style="width:28px"/></td><td class="can_edit"><input type="text" style="width:28px"/></td><td></td><td><button class="add btn btn-primary" type="button">确定</button></td></tr>';
+                                                    $('.table').append(str);
+
+                                                });
+                                                //删除，欠缺和服务器的交互
+                                                $('.right-btn').click(function delTr() {
+                                                    //获取选中的复选框，然后循环遍历删除
+                                                    var ckbs = $('input[name="id"]:checked');
+                                                    if (ckbs.length == 0) {
+                                                        alert("要删除指定行，需选中要删除的行！");
+                                                        return;
+                                                    }
+                                                    ckbs.each(function () {
+                                                        $(this).parent().parent().remove();
+                                                    });
+                                                });
+
+
+                                                //添加之后的class事件
+                                                $(document).on('click', '.add', function () {
+                                                    console.log(0);
+                                                    // 将input的值替换到td里面
+                                                    $(this).parent().siblings("td.can_edit").each(function () {
+
+                                                        obj_text = $(this).find("input");
+                                                        console.log(obj_text.val())
+                                                        if (!obj_text.length)
+                                                            $(this).html("<input style='width:" + $(this).width() + "px' type='text' value='" + $(this).text() + "'>");
+
+                                                        else {
+                                                            $(this).html(obj_text.val());
+                                                        }
+                                                    });
+                                                    // 将按钮的文本变成编辑状态
+                                                    $(this).removeClass('add').addClass('edit_btn').text('编辑')
+                                                });
+                                                //编辑
+                                                $(document).on('click', '.edit_btn', function () {
+                                                    arr = [];
+                                                    if ((($('.edit_btn').text()).indexOf('确定') == -1 && $(this).text() == '编辑') || ($('.edit_btn').text()).indexOf('确定') !== -1 && $(this).text() == '确定') {
+                                                        str = $(this).text() == "编辑" ? "确定" : "编辑";
+
+
+                                                        $(this).text(str);
+                                                        $(this).parent().siblings("td.can_edit").each(function () {
+
+                                                            var td_width = $(this).width();
+                                                            obj_text = $(this).find("input");
+                                                            if (obj_text.val() !== undefined) {
+                                                                arr.push(obj_text.val());
+
+                                                            }
+                                                            if (!obj_text.length)
+
+                                                                $(this).html("<input style='width:" + td_width + "px' type='text' value='" + $(this).text() + "'>");
+
+                                                            else {
+                                                                $(this).html(obj_text.val());
+
+                                                            }
+                                                        });
+                                                        if ($(this).text() !== "确定") {
+                                                            city1 = $(this).closest('tr');
+                                                            console.log(city1.val());
+                                                            city = arr[0];
+                                                            site_name = arr[1];
+                                                            finish = arr[2];
+                                                            access_bandwidth = arr[3];
+                                                            no_bandwidth = arr[4];
+                                                            eu_num = arr[5];
+
+                                                            data = {
+                                                                id: $(city1.find('input')[0]).val(),
+                                                                operator: $(city1.find('td')[1]).text(),
+                                                                project_name: $(city1.find('td')[2]).text(),
+                                                                province: $(city1.find('td')[3]).text(),
+                                                                city: city,
+                                                                site_name: site_name,
+                                                                finish: finish,
+                                                                access_bandwidth: access_bandwidth,
+                                                                no_bandwidth: no_bandwidth,
+                                                                eu_num: eu_num
+                                                            }
+                                                            $.ajax({
+                                                                type: 'POST',
+                                                                url: "{% url 'brandwidth_data' %}",
+                                                                dataType: 'json',
+                                                                data: data,
+                                                                success: function (res) {
+                                                                    console.log(res, 666)
+                                                                },
+
+                                                            });
+                                                        }
+
+                                                    }
+
+
+                                                })

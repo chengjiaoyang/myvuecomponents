@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+  <style>
+    .container{
+      width: 500px;
+      height:300px;
+      border: 1px solid #000;
+    margin-left: 300px;
+    position: relative;
+    overflow: hidden;
+    }
+
+    img{
+      width: 500px;
+      height:300px;
+      position: absolute;
+    }
+
+  .img-enter-active {
+          transform: translateX(0);
+          transition: all 1s ease;
+      }
+
+    .img-leave-active {
+          transform: translateX(-100%);
+          transition: all 1s ease;
+      }
+
+    .img-enter {
+          transform: translateX(100%)
+      }
+
+    .img-leave {
+          transform: translateX(0)
+      }
+      .ool{
+
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <transition-group name='img' tag="div">
+      <div v-for='(image,index) in img_url' v-show='index===num' :key='index' class="ool">
+        <img :src="image" alt="">
+      </div>
+      <!-- <img :src="image" alt="" v-for='(image,index) in img_url' v-show='index===num' :key='index' > -->
+    </transition-group>
+  </div>
+  <script>
+    const vm=new Vue({
+      data:{
+        num:0,
+        img_url:[
+          'img/backg.jpg',
+          'img/v.jpg',
+          'img/timg.jpg',
+          'img/213.jpg',
+          'img/banner3.jpg',
+        ]
+      },
+      created(){
+        setInterval(this.row,2000)
+      },
+      methods:{
+        row:function(){
+            this.num++;
+            this.num>4&&(this.num=0)
+        },
+      }
+    }).$mount('.container')
+  </script>
+</body>
+</html>
