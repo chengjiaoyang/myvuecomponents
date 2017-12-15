@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id='example-3'class="container">
+    <input  type="checkbox" @click="checkall" v-model="cheakalls" id="fu" >all11
+    <br>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+  <br>
+  <span>{{cheakalls}}</span>
+</div>
+  <script>
+    const ap = new Vue({
+      data:{
+        cheakalls:'',
+        checkedNames:[]
+      },
+      methods:{
+        checkall:function(){
+          if(this.cheakalls==true){
+            // var io= document.getElementsByTagName('input');
+            // for(var i =0;i<io.length;i++){
+            //
+            //     io[i].checked=false
+            //
+            // }
+            this.checkedNames.length=0
+          }else{
+            var io= document.getElementsByTagName('input');
+                for(var i =0;i<io.length;i++){
+
+              if(io[i].value!=='on'){
+                  this.checkedNames.push(io[i].value);
+
+              }
+
+
+
+                }
+          }
+        }
+      }
+    }).$mount('.container')
+  </script>
+</body>
+</html>
