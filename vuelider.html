@@ -42,16 +42,40 @@
       .ool{
 
       }
+      .bullet {
+         width: 100%;
+         position: absolute;
+         bottom: 10px;
+         margin: 0 auto;
+         text-align: center;
+         z-index: 10;
+     }
+     span {
+           width: 20px;
+           height: 20px;
+           border: 1px solid;
+           background: white;
+           display: inline-block;
+           margin-right: 10px;
+           border-radius: 50%
+       }
+       .active{
+         background: blue
+       }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" @mouseenter="stop" @mouseleave="enter">
     <transition-group name='img' tag="div">
       <div v-for='(image,index) in img_url' v-show='index===num' :key='index' class="ool">
         <img :src="image" alt="">
       </div>
       <!-- <img :src="image" alt="" v-for='(image,index) in img_url' v-show='index===num' :key='index' > -->
+
     </transition-group>
+    <div class="bullet">
+          <span v-for='(item,index) in img_url.length' :class="{'active':index===num}" @click='change(index)'></span>
+      </div>
   </div>
   <script>
     const vm=new Vue({
@@ -66,13 +90,25 @@
         ]
       },
       created(){
-        setInterval(this.row,2000)
+         timer = setInterval(this.row,2000);
+        console.log(timer)
       },
       methods:{
         row:function(){
             this.num++;
             this.num>4&&(this.num=0)
         },
+        change:function(index){
+          this.num=index
+        },
+        stop:function(){
+        console.log('coming');
+        clearInterval(timer)
+      },
+      enter:function(){
+      console.log('leaving');
+      timer = setInterval(this.row,2000);
+      }
       }
     }).$mount('.container')
   </script>
