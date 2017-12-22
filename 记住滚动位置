@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            background-color: pink;
+            width: 300px;
+            text-align: center;
+        }
+        ul{
+            padding-top: 2%;
+        }
+        ul>li{
+            background-color: #eeeeee;
+            margin-top: 2px;
+            width: 83%;
+            list-style-type:none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+            <li>16</li>
+            <li>17</li>
+            <li>18</li>
+        </ul>
+        <a href="#">点击展开更多</a>
+
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+        <p>我是凑内容的请忽视</p>
+    </div>
+</body>
+<script>
+    div = document.getElementsByTagName('div')[0];
+    ul = document.getElementsByTagName('ul')[0];
+    a = document.getElementsByTagName('a')[0];
+    settop = document.body.scrollTop;
+    li = ul.children;
+    length = li.length;
+    var key = true;
+
+    function getScrollTop(){
+        var scrollTop = 0;
+        if(document.documentElement && document.documentElement.scrollTop){
+            scrollTop = document.documentElement.scrollTop;
+        }else if(document.body){
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+    document.onscroll = function(){
+        console.log(getScrollTop());
+        return getScrollTop();
+    };
+
+    function zi(h){
+        for(var i = 0; i < length; i++){
+            if(i > h){
+                li[i].style.display = "none";
+            }else{
+                li[i].style.display = "";
+            }
+        }
+    }
+    zi(10);
+    a.onclick = function() {
+            if(key){
+                a.innerText = "收起";
+                zi(18);
+                key = false;
+				document.documentElement.scrollTop=getScrollTop()
+            }else{
+                a.innerText = "点击展开更多";
+                zi(10);
+                key = true;
+				document.documentElement.scrollTop=getScrollTop()
+            }
+    }
+</script>
+</html>
