@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	用户<input type="" id='username'>
+	<br>
+	密码 <input type="" id='password'>
+	<br>
+	<button id='btn_sub'>确定</button>
+	<div id="tips" style='display:none'>用户名或密码为空</div>
+	<script>
+		btn_sub.onclick=function(){
+			if(username.value==''||password.value==''){
+				tips.style.display='block'
+			}
+		}
+	</script>
+
+
+
+
+<script>
+function getColor(){
+                          
+     var colorValue="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+        var colorArray = colorValue.split(",");
+            var color="#";
+                for(var i=0;i<6;i++){
+               color+=colorArray[Math.floor(Math.random()*16)];
+                           }
+                           return color;
+                      }
+
+	var body = document.getElementsByTagName('body')[0];
+	window.onload=function(){
+		body.style.background=getColor()
+	}
+</script>
+	<div id='third' style='width:200px;height:200px;'>
+		
+	</div>
+	<button id="start">开始轮换</button>
+	<button id="end">结束轮换</button>
+	<script>
+		var arr=['red','yellow','black','green','pink','gray'];
+		start.onclick=function(){
+			var i=0;
+			 timer = setInterval(function(){
+				
+				third.style.background=arr[i];
+				i++;
+				if(i>arr.length-1){
+					i=0
+				}
+			},1000)
+		}
+		end.onclick=function(){
+			clearInterval(timer)
+		}
+	</script>
+</body>
+</html>
