@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.div{
+		width:100px;
+		background:green;
+		height:200px
+		}	
+		.lo{
+		height:100px;
+		background:blue
+		}
+	</style>
+</head>
+<body>
+<button onclick="yy()">xxx</button>
+<input type="" id="name">
+<input type="" id="width">
+<input type="" id="height">
+<input type="" id="color">
+	<div class="div | lo" data-ui='ma' id="" style="width:100px;height:100px"></div>
+	<script>
+	console.log(width.value);
+
+
+	function Co (id,width,height,color){
+	this.width=width;
+	this.height=height;
+	this.color=color;
+	this.id=id
+	let div =document.createElement('div');
+	div.id=this.id;
+	div.style.width=this.width+"px";
+	div.style.height=this.height+"px";
+	div.style.background=this.color;
+	
+	let body=document.getElementsByTagName('body')[0];
+	body.appendChild(div);
+	}
+
+	var tt=new Co('tw',100,100,'red');
+	function yy(){
+	var idss =document.getElementById('name').value||'ww';
+	var widths=width.value||100;
+	var heights=height.value||100;
+	var colors=color.value||'green';
+	console.log(idss,widths,heights,colors);
+	new Co(idss,widths,heights,colors);
+	var inputs=document.querySelectorAll('input');
+	[...inputs].forEach(function(e){
+		e.value=''
+	})
+	}
+	</script>
+</body>
+</html>
