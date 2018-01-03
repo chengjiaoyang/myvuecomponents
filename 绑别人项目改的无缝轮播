@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>	
+	<style>
+		body{
+
+height: 5000px
+}
+div{
+
+width: 400px;
+height: 400px;
+margin: 0 auto;
+overflow: hidden;
+position: relative;
+}
+.pic li{
+transition: all 1s;
+display: inline-block;
+float: left;
+height: 100%;
+width: 400px;
+}
+.pic{
+
+transition: all 1s;
+font-size: 0;
+height: 400px;
+width: 2000px;
+position: absolute;
+left: 0
+}
+.one{
+
+background: url(1.png)no-repeat;
+background-size: 400px 400px;
+}
+.two{
+
+background: url(2.png)no-repeat;
+background-size: 400px 400px;
+}
+.three{
+
+background: url(3.png)no-repeat;
+background-size: 400px 400px;
+}
+.four{
+
+background: url(4.png)no-repeat;
+background-size: 400px 400px;
+}
+.five{
+
+background: url(1.png)no-repeat;
+background-size: 400px 400px;
+}
+	</style>
+</head>
+<body>
+	<div>
+    <ul class="pic">
+          <li class="one"></li>
+          <li class="two"></li>
+          <li class="three"></li>
+          <li class="four"></li>
+         <!--  <li class="five"></li> -->
+    </ul>
+</div>
+<button id="btn">btn</button>
+<script>
+$(document).ready(function(){
+
+var cindex = 0;
+$('#btn').click(function(){
+   
+    
+	console.log();
+
+    //$('.pic').css("left",cindex*400*-1 + "px")
+
+	 	if(cindex>1){
+			console.log(11);
+		//	$('.pic>li:eq('+cindex+')').css('marginLeft','-400px');
+	$('.pic>li:first-child').removeAttr("style").remove().appendTo($('.pic'));
+	cindex--;
+	}
+		$('.pic>li:eq('+cindex+')').css('marginLeft','-400px');
+	 cindex++;
+})
+})
+</script>
+</body>
+</html>
