@@ -1,0 +1,54 @@
+这个格式的 
+随便	事件	3人
+性别	自定义	男女
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+<table id="kill">
+</table>
+	<script>
+		var data={
+		"dimension":[
+			{"name":"随便","type":"事件","data":"3人"},
+			{"name":"性别","type":"自定义","data":[{"01":"男"},{"02":"女"}]},
+		]
+		}
+		var anice=data.dimension;
+		var ace=$('#kill')
+		$.each(anice,function(index,item){
+
+		if(typeof item.data === 'object'){
+			var str='';
+			$.each(item.data,function(ind,ite){
+			
+			let num='0'+(ind+1);
+			 
+			
+			 item.data+=ite[num];
+			 str+=ite[num];
+			})
+			
+			item.data=str;
+			
+			}
+		var list=$(
+		'<tr>'+
+		'<td>'+item.name+'</td>'+
+		'<td>'+item.type+'</td>'+
+		'<td>'+item.data+'</td>'+
+		'</tr>'
+		
+		);
+			
+		ace.append(list);
+		
+		})
+	</script>
+</body>
+</html>
