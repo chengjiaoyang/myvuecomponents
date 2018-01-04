@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,li{
+            list-style-type: none;
+        }
+
+        .scrollBanner{
+            position: relative;
+            overflow: hidden;
+            width: 600px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .bannerBox{
+            position: absolute;
+            width: 3000px;
+            height: 300px;
+            left:0;
+            top:0;
+        }
+
+        .bannerBox li {
+            float: left;
+        }
+
+        .bannerBox li a{
+            font-size: 60px;
+            font-weight: 900;
+        }
+
+        .bannerBox li a img{
+            width: 600px;
+            height: 300px;
+            display: block;
+        }
+
+        .scrollBanner .arr_left{
+            color: white;
+            display: inline-block;
+            position: absolute;
+            top: 120px;
+            width: 30px;
+            height: 60px;
+            background: rgba(0,0,0,0.3);
+            text-align: center;
+            cursor:pointer;
+            z-index: 9;
+        }
+        .scrollBanner .arr_right{
+            color: white;
+            display: inline-block;
+            position: absolute;
+            top: 120px;
+            left: 570px;
+            width: 30px;
+            height: 60px;
+            background: rgba(0,0,0,0.3);
+            text-align: center;
+            cursor:pointer;
+            z-index: 9;
+        }
+
+        .scrollBanner .arr_left:hover{
+            background: rgba(0,0,0,0.5);
+        }
+        .scrollBanner .arr_right:hover{
+            background: rgba(0,0,0,0.5);
+        }
+
+        .scrollBanner .scroll_num{
+            position: absolute;
+            top: 270px;
+            left: 47%;
+            margin-left: -27px;
+        }
+
+        .scrollBanner .scroll_num span{
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            border: 1px solid white;
+            border-radius: 6px;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+        .scrollBanner .scroll_num span.current{
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="scrollBanner">
+        <ul class="bannerBox">
+            <li><a href="javascript:void(0)" target="_blank">
+                <img src="img/1.png">
+            </a></li>
+            <li><a href="javascript:void(0)" target="_blank">
+                <img src="img/2.png">
+            </a></li>
+            <li><a href="javascript:void(0)" target="_blank">
+                <img src="img/3.png">
+            </a></li>
+            <li><a href="javascript:void(0)" target="_blank">
+                <img src="img/4.png">
+            </a></li>
+            <li><a href="javascript:void(0)" target="_blank">
+                <img src="img/1.png">
+            </a></li>
+        </ul>
+
+        <a class="arr_left" title="上一张" style="font-size:50px"><</a>
+        <a class="arr_right" title="下一张" style="font-size:50px">></a>
+
+        <div class="scroll_num">
+            <span class="current"></span>
+            <span class=""></span>
+            <span class=""></span>
+            <span class=""></span>
+        </div>
+    </div>
+</body>
+<script>
+    var oUl = document.getElementsByClassName('bannerBox')[0];
+	
+    var timer = null;
+    var autoTimer = null;
+    var key = true;
+    var distance = -600;
+    var num = oUl.children.length - 1;
+    var moveWidth = oUl.children[0].offsetWidth;
+	
+    function startMove(obj, target){
+		
+        if(key) {
+            key = false;
+            distance += -600;
+            clearInterval(timer);
+            timer = setInterval(function() {
+                var oLeft = Math.ceil(obj.offsetLeft);
+				console.log(target)
+				console.log(oLeft)
+                var iSpeed = -1;
+                if(oLeft === target){
+
+					console.log('ok')
+                    clearInterval(timer);
+                    key = true;
+                }else{
+                    obj.style.left = oLeft + iSpeed + 'px';
+
+                }
+                if(oUl.offsetLeft == - num * moveWidth){
+					clearInterval(timer);
+                    oUl.style.left = '0px';
+					key=true;
+					distance=-600;
+                }
+            },0);
+        }
+    }
+
+    function autoMove() {
+        autoTimer = setInterval(function() {
+            startMove(oUl,distance);
+        },1000)
+    }
+    autoMove();
+
+
+</script>
+</html>
