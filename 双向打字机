@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style></style>
+</head>
+<body>
+<span class="subheading">Lorem</span>
+	<script>
+	function blink(classname,speed,guangbiao){
+		var key=true;
+			var style=document.getElementsByTagName('style')[0];
+			var ssr=`
+				@keyframes flash {
+				  0% {
+					opacity: 1;
+				  }
+				  100% {
+					opacity: 0;
+				  }
+				}
+			.${classname}::after{
+			content:'|';
+			animation: flash ${guangbiao}s none infinite alternate
+				
+		}`;
+			style.innerHTML+=ssr;
+			var str=document.getElementsByClassName(classname)[0].innerHTML;
+			document.getElementsByClassName(classname)[0].innerHTML='';
+			
+			var arr=str.split('');
+			function kaiqi(){
+					if(key){
+					add();
+					}
+					
+					if(document.getElementsByClassName(classname)[0].innerHTML===str){
+					clearInterval(timer);
+						key=false;
+					}
+					if(!key){
+						timer2=setInterval(del,speed);
+
+					}
+					if(document.getElementsByClassName(classname)[0].innerHTML===''){
+					clearInterval(timer2);
+					
+					}
+					
+								}
+								function add(){
+								var sp='';
+					sp =arr.shift();
+					var myIdElement = document.getElementsByClassName(classname)[0];
+					
+					var beforeStyle = window.getComputedStyle(myIdElement,":after");
+					
+					document.getElementsByClassName(classname)[0].innerHTML+=sp;
+								}
+								function del(){
+								var str2=document.getElementsByClassName(classname)[0].innerHTML;
+								str2=str2.slice(0,str2.length-1);
+								document.getElementsByClassName(classname)[0].innerHTML=str2;
+								
+					
+								}
+			timer=setInterval(kaiqi,speed);
+
+			
+							}
+	
+	blink('subheading',500,0.5)
+	</script>
+</body>
+</html>
