@@ -1,0 +1,50 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<input type="text" name="user_login" onblur="tit(this.value)" onfocus="aa();">
+
+  <script>
+                  function tit(str){
+
+                     var ale = document.getElementById('alert');
+                      $.ajax({
+                          url: "__URL__/check",
+                          type: "GET",
+                          data: { name: str},
+                          dataType: "json",
+                          success: function(qqq){
+  							if(qqq == 0){
+  								ale.innerHTML = "该用户名已经存在，请重新输入!";
+  							}
+  							else if(qqq == 1) {
+                                  ale.innerHTML = " ";
+  							}
+                          }
+                      });
+                  }
+                  function aa(){
+                    alert(1)
+                      var ale = document.getElementById('alert');
+                      alert(ale.innerHTML);
+                      ale.innerHTML = " ";
+                  }
+  			</script>
+
+
+</body>
+</html>
+
+ onfocus="window.clear();"
+ clear改名字
+ clear是作为document对象的方法关键字，意为清除当前文档。
+在用标签的属性监听事件的时候，它是从document对象开始超找的搜索。所以
+onfocus="clear();" 其实调用了document.clear方法。
+
+小坑一个 纪念一下 
